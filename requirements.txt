@@ -1,0 +1,4 @@
+# Web server environment (.venv)
+flask>=3.0
+faster-whisper>=1.0
+# CosyVoice itself runs in .venv-cosyvoice (see models/CosyVoice requirements)

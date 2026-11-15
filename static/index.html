@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voice Cloner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Voice Cloner</h1>
+    <p class="sub">Upload a short recording of a voice, type English text, and hear it spoken in that voice.</p>
+
+    <p id="status" class="status loading">Loading voice model…</p>
+
+    <form id="form">
+      <label for="reference">1. Reference voice</label>
+      <input type="file" id="reference" accept="audio/*,video/*" required>
+      <p class="hint">10–30 s of clear, single-speaker speech. For an Indian English accent, use a recording of an Indian speaker.</p>
+      <audio id="refPlayer" controls hidden></audio>
+
+      <label for="text">2. Text to speak</label>
+      <textarea id="text" rows="5" maxlength="1500" placeholder="Type what the cloned voice should say…" required></textarea>
+
+      <details>
+        <summary>Advanced</summary>
+        <label for="mode">Cloning mode</label>
+        <select id="mode">
+          <option value="zero_shot">Voice match (recommended): keeps voice and accent</option>
+          <option value="cross_lingual">Cross-lingual: voice only, generic accent</option>
+        </select>
+        <label for="transcript">Reference transcript (optional, auto-detected if empty)</label>
+        <textarea id="transcript" rows="2" placeholder="Exact words spoken in the reference clip"></textarea>
+      </details>
+
+      <button type="submit" id="go">Clone voice</button>
+    </form>
+
+    <p id="message" class="message" hidden></p>
+
+    <section id="result" hidden>
+      <h2>Result</h2>
+      <audio id="player" controls></audio>
+      <p class="hint" id="meta"></p>
+      <a id="download" download="cloned_voice.wav">Download WAV</a>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
