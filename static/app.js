@@ -70,3 +70,44 @@ form.addEventListener("submit", async (e) => {
     button.textContent = "Clone voice";
   }
 });
+
+// ---- Examples: same reference voice, two generated outputs ----
+const REF_URL = "/assets/reference/muni-shri-pranamya-sagar-ji-pravchan-ansh_320kbps.mp3";
+const EXAMPLES = ["clone_4b9e1f8c", "clone_edefe70d"];
+
+EXAMPLES.forEach(async (name, i) => {
+  const box = document.createElement("div");
+  box.className = "example";
+  const label = document.createElement("strong");
+  label.textContent = `Example ${i + 1}`;
+  const text = document.createElement("p");
+  const audio = document.createElement("audio");
+  audio.controls = true;
+  audio.preload = "none";
+  audio.src = `/assets/outputs/${name}.wav`;
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.textContent = "Try this example";
+  box.append(label, text, audio, btn);
+  $("exList").append(box);
+
+  try {
+    text.textContent = (await (await fetch(`/assets/outputs/${name}.txt`)).text()).trim();
+  } catch (e) { text.textContent = ""; }
+
+  // Load the example's reference voice and text into the form.
+  btn.addEventListener("click", async () => {
+    try {
+      const blob = await (await fetch(REF_URL)).blob();
+      const file = new File([blob], "reference.mp3", { type: blob.type || "audio/mpeg" });
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      $("reference").files = dt.files;
+      $("reference").dispatchEvent(new Event("change"));
+      $("text").value = text.textContent;
+      form.scrollIntoView({ behavior: "smooth" });
+    } catch (e) {
+      showMessage("Could not load the example reference.", true);
+    }
+  });
+});

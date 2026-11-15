@@ -69,3 +69,9 @@ button:disabled { background: #9aa5d6; cursor: wait; }
 .message.error { background: #fde2e2; color: #9b1c1c; }
 
 #download { display: inline-block; margin-top: 8px; color: #3b5bdb; }
+
+#examples { margin-top: 20px; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0, 0, 0, .08); }
+.example { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb; }
+.example p { margin: 0 0 8px; font-size: .9rem; color: #374151; }
+.example button { width: auto; margin-top: 10px; padding: 8px 14px; background: #fff; color: #3b5bdb; border: 1px solid #3b5bdb; }
+.example button:hover:not(:disabled) { background: #eef1ff; }

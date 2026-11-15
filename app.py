@@ -71,6 +71,11 @@ def clone():
         shutil.rmtree(work, ignore_errors=True)
 
 
+@app.get("/assets/<path:name>")
+def assets(name):
+    return send_from_directory(os.path.join(ROOT, "assets"), name)
+
+
 @app.get("/output/<path:name>")
 def output(name):
     return send_from_directory(OUT_DIR, name)
