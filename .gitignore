@@ -12,3 +12,4 @@ models/
 samples/
 sample.txt
 !assets/player/*.mp4
+/clone_*.wav
