@@ -36,10 +36,29 @@ flowchart LR
 
 ## Demo
 
-**Reference audio** (the voice that was cloned):
+Press play on each player below.
 
-| File | Description |
-|---|---|
+### Reference audio (the voice that was cloned)
+
+*मुनि श्री प्रणम्य सागर जी प्रवचन अंश / muni shri Pranamya sagar ji Pravchan ansh* (320 kbps, about 10.9 s)
+
+<video src="https://github.com/Om-Arham-Foundation-Inc/VoiceCloner/raw/main/assets/player/reference.mp4" controls width="640"></video>
+
+### Output 1: `clone_4b9e1f8c.wav` (42.3 s)
+
+> The old oak tree stood quietly at the edge of the abandoned garden, its weathered branches swaying gently in the morning breeze. A small brown bird landed briefly on a lower limb, chirped twice to test the air, and then darted away toward the sunlit hills. Down below, a faded wooden bench rested in the shade, covered in a thin layer of autumn leaves that crunched softly whenever the wind shifted.
+
+<video src="https://github.com/Om-Arham-Foundation-Inc/VoiceCloner/raw/main/assets/player/clone_4b9e1f8c.mp4" controls width="640"></video>
+
+### Output 2: `clone_edefe70d.wav` (26.6 s)
+
+> There are many definitions of peace, but all of them are rooted in notions of individual flourishing, cooperation, mutual respect, and justice. It is one thing for children to be healthy, but an ideal world would foster children who are also peaceful
+
+<video src="https://github.com/Om-Arham-Foundation-Inc/VoiceCloner/raw/main/assets/player/clone_edefe70d.mp4" controls width="640"></video>
+
+The original files are in [`assets/`](assets/): the [reference MP3](assets/reference/muni-shri-pranamya-sagar-ji-pravchan-ansh_320kbps.mp3), [clone_4b9e1f8c.wav](assets/outputs/clone_4b9e1f8c.wav) with its [text](assets/outputs/clone_4b9e1f8c.txt), and [clone_edefe70d.wav](assets/outputs/clone_edefe70d.wav) with its [text](assets/outputs/clone_edefe70d.txt). The players use MP4 copies of the same audio (with a waveform picture) in `assets/player/`, because GitHub plays video but not audio inside a README.
+
+---|---|
 | [muni-shri-pranamya-sagar-ji-pravchan-ansh_320kbps.mp3](assets/reference/muni-shri-pranamya-sagar-ji-pravchan-ansh_320kbps.mp3) | Source recording: *मुनि श्री प्रणम्य सागर जी प्रवचन अंश / muni shri Pranamya sagar ji Pravchan ansh* (320 kbps, about 10.9 s) |
 
 **Generated outputs**, both using the reference above:
@@ -81,7 +100,7 @@ app.py             Flask server and API (/api/status, /api/clone)
 voice_cloner.py    Reference preparation and worker management
 worker.py          Persistent CosyVoice process (runs in .venv-cosyvoice)
 static/            index.html, style.css, app.js
-assets/            Demo reference audio and generated outputs
+assets/            Demo reference audio, generated outputs, and README players
 ```
 
 ## Accent
