@@ -32,49 +32,8 @@ flowchart LR
 3. **Chunked synthesis.** The text is split into sentence chunks. The sampling in the model is random and sometimes stops early, so each chunk's duration is checked against its text length and the chunk is regenerated if it looks wrong.
 4. **Persistent worker.** CosyVoice runs in a separate process and virtual environment (`.venv-cosyvoice`) and stays loaded between requests.
 
----
-
-## Demo
-
-The same examples are built into the web app (the **Examples** section on the page, with a *Try this example* button).
-
-### Reference audio (the voice that was cloned)
-
-*मुनि श्री प्रणम्य सागर जी प्रवचन अंश / muni shri Pranamya sagar ji Pravchan ansh* (320 kbps, about 10.9 s)
-
-[▶ Play](https://github.com/Om-Arham-Foundation-Inc/VoiceCloner/blob/main/assets/player/reference.mp4)
-
-### Output 1: `clone_4b9e1f8c.wav` (42.3 s)
-
-> The old oak tree stood quietly at the edge of the abandoned garden, its weathered branches swaying gently in the morning breeze. A small brown bird landed briefly on a lower limb, chirped twice to test the air, and then darted away toward the sunlit hills. Down below, a faded wooden bench rested in the shade, covered in a thin layer of autumn leaves that crunched softly whenever the wind shifted.
-
-[▶ Play](https://github.com/Om-Arham-Foundation-Inc/VoiceCloner/blob/main/assets/player/clone_4b9e1f8c.mp4)
-
-### Output 2: `clone_edefe70d.wav` (26.6 s)
-
-> There are many definitions of peace, but all of them are rooted in notions of individual flourishing, cooperation, mutual respect, and justice. It is one thing for children to be healthy, but an ideal world would foster children who are also peaceful
-
-[▶ Play](https://github.com/Om-Arham-Foundation-Inc/VoiceCloner/blob/main/assets/player/clone_edefe70d.mp4)
-
-The original files are in [`assets/`](assets/): the [reference MP3](assets/reference/muni-shri-pranamya-sagar-ji-pravchan-ansh_320kbps.mp3), [clone_4b9e1f8c.wav](assets/outputs/clone_4b9e1f8c.wav) with its [text](assets/outputs/clone_4b9e1f8c.txt), and [clone_edefe70d.wav](assets/outputs/clone_edefe70d.wav) with its [text](assets/outputs/clone_edefe70d.txt). The **Play** links open MP4 copies of the same audio (with a waveform picture) in `assets/player/`, because GitHub can preview video but not audio files.
-
----|---|
-| [muni-shri-pranamya-sagar-ji-pravchan-ansh_320kbps.mp3](assets/reference/muni-shri-pranamya-sagar-ji-pravchan-ansh_320kbps.mp3) | Source recording: *मुनि श्री प्रणम्य सागर जी प्रवचन अंश / muni shri Pranamya sagar ji Pravchan ansh* (320 kbps, about 10.9 s) |
-
-**Generated outputs**, both using the reference above:
-
-| Output | Duration | Input text |
-|---|---|---|
-| [clone_4b9e1f8c.wav](assets/outputs/clone_4b9e1f8c.wav) | 42.3 s | *The old oak tree stood quietly at the edge of the abandoned garden, its weathered branches swaying gently in the morning breeze. A small brown bird landed briefly on a lower limb, chirped twice to test the air, and then darted away toward the sunlit hills. Down below, a faded wooden bench rested in the shade, covered in a thin layer of autumn leaves that crunched softly whenever the wind shifted.* ([text file](assets/outputs/clone_4b9e1f8c.txt)) |
-| [clone_edefe70d.wav](assets/outputs/clone_edefe70d.wav) | 26.6 s | *There are many definitions of peace, but all of them are rooted in notions of individual flourishing, cooperation, mutual respect, and justice. It is one thing for children to be healthy, but an ideal world would foster children who are also peaceful* ([text file](assets/outputs/clone_edefe70d.txt)) |
-
-GitHub does not play audio inside a README. Open a file link above and use the download or raw button to listen.
-
----
 
 ## Requirements
-
-- Windows with an NVIDIA GPU (developed on an RTX 4060 Ti, 8 GB)
 - Python 3.11
 - [ffmpeg](https://ffmpeg.org/) on `PATH`
 - The CosyVoice repository and the `Fun-CosyVoice3-0.5B` weights in `models/CosyVoice/` (see the CosyVoice project for setup), with its dependencies installed in `.venv-cosyvoice`
@@ -91,7 +50,7 @@ python -m venv .venv
 .venv\Scripts\python app.py
 ```
 
-Open http://127.0.0.1:5000. The first page load shows "Loading voice model…" until CosyVoice has finished loading, which takes about a minute.
+Open Link at (https://kurt-suggestion-empty-submitting.trycloudflare.com/) . The first page load shows "Loading voice model…" until CosyVoice has finished loading, which takes about a minute.
 
 ## Project layout
 
