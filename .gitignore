@@ -11,3 +11,4 @@ models/
 /*.mp3
 samples/
 sample.txt
+!assets/player/*.mp4
