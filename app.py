@@ -8,7 +8,7 @@ import shutil
 import tempfile
 import uuid
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, Response, jsonify, request, send_from_directory
 
 from voice_cloner import VoiceCloner
 
@@ -22,6 +22,20 @@ app = Flask(__name__, static_folder="static", static_url_path="")
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50 MB upload cap
 cloner = VoiceCloner()
 atexit.register(cloner.close)
+
+# Optional HTTP Basic auth: set VC_PASSWORD (and optionally VC_USER) before starting.
+AUTH_USER = os.environ.get("VC_USER", "user")
+AUTH_PASSWORD = os.environ.get("VC_PASSWORD", "")
+
+
+@app.before_request
+def require_login():
+    if not AUTH_PASSWORD:
+        return None
+    a = request.authorization
+    if a and a.username == AUTH_USER and a.password == AUTH_PASSWORD:
+        return None
+    return Response("Login required", 401, {"WWW-Authenticate": 'Basic realm="Voice Cloner"'})
 
 
 @app.get("/")
@@ -81,6 +95,11 @@ def output(name):
     return send_from_directory(OUT_DIR, name)
 
 
+cloner.start()  # load the model at import so waitress/other servers get it too
+
 if __name__ == "__main__":
-    cloner.start()
-    app.run(host="127.0.0.1", port=5000, threaded=True)
+    try:
+        from waitress import serve
+        serve(app, host="127.0.0.1", port=5000, threads=4, channel_timeout=600)
+    except ImportError:
+        app.run(host="127.0.0.1", port=5000, threaded=True)
